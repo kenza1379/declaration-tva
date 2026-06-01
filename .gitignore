@@ -1,0 +1,73 @@
+## ============================================================
+## .gitignore pour projet C# / WPF / Visual Studio
+## ============================================================
+
+# ----- Dossiers de build -----
+bin/
+obj/
+out/
+
+# ----- Visual Studio -----
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.rsuser
+
+# ----- Visual Studio Code -----
+.vscode/
+*.code-workspace
+
+# ----- Rider (JetBrains) -----
+.idea/
+*.sln.iml
+
+# ----- Fichiers temporaires et logs -----
+*.log
+*.tmp
+*.temp
+*.cache
+Thumbs.db
+desktop.ini
+
+# ----- macOS -----
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# ----- NuGet -----
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+!**/packages/repositories.config
+*.lock.json        # sauf packages.lock.json si tu l'utilises intentionnellement
+
+# ----- Résultats de tests -----
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+coverage*/
+
+# ----- Fichiers de publication -----
+publish/
+PublishProfiles/
+
+# ----- Secrets et configuration locale -----
+appsettings.Development.json
+appsettings.Local.json
+secrets.json
+*.pfx
+*.p12
+
+# ----- Entity Framework migrations générées localement -----
+# (décommente si tu ne veux pas versionner les migrations)
+# Migrations/
+
+# ----- Fichiers Windows -----
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.lnk

@@ -1,0 +1,85 @@
+﻿<Window x:Class="DeclaTVA.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DeclaTVA"
+        mc:Ignorable="d"
+        Title="Déclaration TVA" Height="600" Width="900">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBlock Text="Fichier Excel :" VerticalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBox x:Name="txtFichier" Width="200" IsReadOnly="True" Margin="0,0,10,0"/>
+            <Button x:Name="btnParcourir" Content="Parcourir..." Click="btnParcourir_Click" Margin="0,0,10,0"/>
+            <Button x:Name="btnEnregistrer" Content="Enregistrer en BDD" Click="btnEnregistrer_Click"
+            IsEnabled="False" Background="#2196F3" Foreground="White" Padding="8,3"/>
+        </StackPanel>
+
+        <GroupBox Grid.Row="1" Header="Informations d'identification" Margin="0,0,0,10">
+            <Grid Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Société :" Margin="5"/>
+                <TextBlock Grid.Row="0" Grid.Column="1" x:Name="lblSociete" Margin="5"/>
+                <TextBlock Grid.Row="0" Grid.Column="2" Text="Identifiant Fiscal :" Margin="5"/>
+                <TextBlock Grid.Row="0" Grid.Column="3" x:Name="lblIF" Margin="5"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="ICE :" Margin="5"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" x:Name="lblICE" Margin="5"/>
+                <TextBlock Grid.Row="1" Grid.Column="2" Text="Régime :" Margin="5"/>
+                <TextBlock Grid.Row="1" Grid.Column="3" x:Name="lblRegime" Margin="5"/>
+
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Période :" Margin="5"/>
+                <TextBlock Grid.Row="2" Grid.Column="1" x:Name="lblPeriode" Margin="5"/>
+                <TextBlock Grid.Row="2" Grid.Column="2" Text="Année :" Margin="5"/>
+                <TextBlock Grid.Row="2" Grid.Column="3" x:Name="lblAnnee" Margin="5"/>
+            </Grid>
+        </GroupBox>
+
+        <DataGrid Grid.Row="2" x:Name="dgTva" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="N° Facture" Binding="{Binding NumFacture}" Width="100"/>
+                <DataGridTextColumn Header="Date" Binding="{Binding DateFacture}" Width="100"/>
+                <DataGridTextColumn Header="Fournisseur" Binding="{Binding Fournisseur}" Width="150"/>
+                <DataGridTextColumn Header="Désignation" Binding="{Binding Designation}" Width="150"/>
+                <DataGridTextColumn Header="HT" Binding="{Binding MontantHT}" Width="80"/>
+                <DataGridTextColumn Header="TVA" Binding="{Binding MontantTVA}" Width="80"/>
+                <DataGridTextColumn Header="TTC" Binding="{Binding MontantTTC}" Width="80"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid Grid.Row="3"
+          x:Name="dgErreurs"
+          AutoGenerateColumns="False"
+          IsReadOnly="True"
+          Margin="0,10,0,0"
+          Height="150">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Ligne" Binding="{Binding ligne}" Width="60"/>
+                <DataGridTextColumn Header="Champ" Binding="{Binding champ}" Width="120"/>
+                <DataGridTextColumn Header="Message" Binding="{Binding message}" Width="*"/>
+            </DataGrid.Columns>
+
+        </DataGrid>
+        
+        
+
+    </Grid>
+</Window>
