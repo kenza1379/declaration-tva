@@ -21,9 +21,6 @@ namespace DeclaTVA
                 entity.Property(d => d.Societe).HasMaxLength(200);
                 entity.Property(d => d.IdentifiantFiscal).HasMaxLength(200);
                 entity.Property(d => d.ICE).HasMaxLength(200);
-                entity.Property(d => d.Regime).HasMaxLength(200);
-                entity.Property(d => d.Periode).HasMaxLength(50);
-                entity.Property(d => d.Annee).HasMaxLength(10);
                 entity.Property(d => d.DateImport).HasDefaultValueSql("GETDATE()");
             });
 
@@ -32,22 +29,16 @@ namespace DeclaTVA
             {
                 entity.HasKey(l => l.Id);
                 entity.Property(l => l.NumFacture).HasMaxLength(200);
-                entity.Property(l => l.DateFacture).HasMaxLength(200);
                 entity.Property(l => l.Fournisseur).HasMaxLength(200);
                 entity.Property(l => l.Designation).HasMaxLength(500);
+                entity.Property(l => l.IFFournisseur).HasMaxLength(200);
+                entity.Property(l => l.ICEFournisseur).HasMaxLength(200);
+                entity.Property(l => l.MontantHT).HasColumnType("decimal(18,2)");
+                entity.Property(l => l.MontantTVA).HasColumnType("decimal(18,2)");
+                entity.Property(l => l.MontantTTC).HasColumnType("decimal(18,2)");
+                entity.Property(l => l.TauxTVA).HasColumnType("decimal(5,2)");
+                entity.Property(l => l.Prorata).HasColumnType("decimal(5,2)");
 
-                // Montants en DECIMAL
-                entity.Property(l => l.MontantHT).HasConversion(
-                        v => decimal.Parse(v, System.Globalization.CultureInfo.InvariantCulture),
-                        v => v.ToString(System.Globalization.CultureInfo.InvariantCulture)).HasColumnType("decimal(18,2)");
-
-                entity.Property(l => l.MontantTVA).HasConversion(
-                        v => decimal.Parse(v, System.Globalization.CultureInfo.InvariantCulture),
-                        v => v.ToString(System.Globalization.CultureInfo.InvariantCulture)).HasColumnType("decimal(18,2)");
-
-                entity.Property(l => l.MontantTTC).HasConversion(
-                        v => decimal.Parse(v, System.Globalization.CultureInfo.InvariantCulture),
-                        v => v.ToString(System.Globalization.CultureInfo.InvariantCulture)).HasColumnType("decimal(18,2)");
 
                 // Relation 
                 entity.HasOne(l => l.Declaration).WithMany(d => d.Lignes).HasForeignKey(l => l.DeclarationId);

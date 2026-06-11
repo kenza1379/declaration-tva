@@ -18,7 +18,9 @@
             <TextBox x:Name="txtFichier" Width="200" IsReadOnly="True" Margin="0,0,10,0"/>
             <Button x:Name="btnParcourir" Content="Parcourir..." Click="btnParcourir_Click" Margin="0,0,10,0"/>
             <Button x:Name="btnEnregistrer" Content="Enregistrer en BDD" Click="btnEnregistrer_Click"
-            IsEnabled="False" Background="#2196F3" Foreground="White" Padding="8,3"/>
+                    IsEnabled="False" Background="#2196F3" Foreground="White" Padding="8,3"/>
+            <Button x:Name="btnGenererEdi" Content="Générer EDI" 
+                IsEnabled="False" Click="btnGenererEdi_Click"/>
         </StackPanel>
 
         <GroupBox Grid.Row="1" Header="Informations d'identification" Margin="0,0,0,10">
@@ -55,12 +57,18 @@
         <DataGrid Grid.Row="2" x:Name="dgTva" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="N° Facture" Binding="{Binding NumFacture}" Width="100"/>
-                <DataGridTextColumn Header="Date" Binding="{Binding DateFacture}" Width="100"/>
+                <DataGridTextColumn Header="Date Facture" Binding="{Binding DateFacture, StringFormat=dd/MM/yyyy}" Width="100"/>
+                <DataGridTextColumn Header="IF Fournisseur" Binding="{Binding IFFournisseur}" Width="110"/>
+                <DataGridTextColumn Header="ICE Fournisseur" Binding="{Binding ICEFournisseur}" Width="110"/>
                 <DataGridTextColumn Header="Fournisseur" Binding="{Binding Fournisseur}" Width="150"/>
                 <DataGridTextColumn Header="Désignation" Binding="{Binding Designation}" Width="150"/>
-                <DataGridTextColumn Header="HT" Binding="{Binding MontantHT}" Width="80"/>
-                <DataGridTextColumn Header="TVA" Binding="{Binding MontantTVA}" Width="80"/>
-                <DataGridTextColumn Header="TTC" Binding="{Binding MontantTTC}" Width="80"/>
+                <DataGridTextColumn Header="HT" Binding="{Binding MontantHT, StringFormat=N2}" Width="80"/>
+                <DataGridTextColumn Header="Taux TVA" Binding="{Binding TauxTVA, StringFormat=N2}" Width="70"/>
+                <DataGridTextColumn Header="TVA" Binding="{Binding MontantTVA, StringFormat=N2}" Width="80"/>
+                <DataGridTextColumn Header="TTC" Binding="{Binding MontantTTC, StringFormat=N2}" Width="80"/>
+                <DataGridTextColumn Header="Date Paiement" Binding="{Binding DatePaiement, StringFormat=dd/MM/yyyy}" Width="100"/>
+                <DataGridTextColumn Header="Mode Paiement" Binding="{Binding ModePaiement}" Width="90"/>
+                <DataGridTextColumn Header="Prorata" Binding="{Binding Prorata, StringFormat=N2}" Width="70"/>
             </DataGrid.Columns>
         </DataGrid>
 
@@ -76,10 +84,8 @@
                 <DataGridTextColumn Header="Champ" Binding="{Binding champ}" Width="120"/>
                 <DataGridTextColumn Header="Message" Binding="{Binding message}" Width="*"/>
             </DataGrid.Columns>
-
         </DataGrid>
-        
-        
+
 
     </Grid>
 </Window>

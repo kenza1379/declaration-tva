@@ -10,29 +10,32 @@ namespace DeclaTVA
         {
             this.context = context;
         }
+
         public void InitialiserDatabase()
         {
+            //context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
         }
 
-        public int EnregistrerDeclaration(string societe, string identifiantFiscal, string ice, string regime, string periode, string annee, ObservableCollection<LigneTva> lignes)
+        public int EnregistrerDeclaration(
+            string societe, string identifiantFiscal, string ice,
+            int regime, int periode, string annee,
+            ObservableCollection<LigneTva> lignes)
         {
-
             var declaration = new Declaration
             {
                 Societe = societe ?? "",
                 IdentifiantFiscal = identifiantFiscal ?? "",
                 ICE = ice ?? "",
-                Regime = regime ?? "",
-                Periode = periode ?? "",
-                Annee = annee ?? "",
-                Lignes = new(lignes)   
+                Regime = regime,
+                Periode = periode,
+                Annee = annee,
+                Lignes = new List<LigneTva>(lignes)
             };
 
             context.Declarations.Add(declaration);
-            context.SaveChanges();   
-
-            return declaration.Id;   
+            context.SaveChanges();
+            return declaration.Id;
         }
     }
 }
